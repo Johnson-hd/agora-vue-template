@@ -1,6 +1,6 @@
 {
 	"layout": {
-		"prefix": "layout-form-table",
+		"prefix": "layout-form",
 		"body": [
 			"<template>",
       "\t<div class=\"your-component-name form\">",
