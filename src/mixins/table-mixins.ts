@@ -64,7 +64,7 @@ export default class TableMixins extends GlobalMixins {
   }
 
   onSelectionChange(val: number | string) {
-    this.multipleSelection = val;
+    (this as any).multipleSelection = val;
   }
 
   onSizeChange(val: number) {
@@ -77,7 +77,7 @@ export default class TableMixins extends GlobalMixins {
     this.getTableList();
   }
 
-  onCurrentChange(val) {
+  onCurrentChange(val: number) {
     this.pagination.page = val;
     this.changeRoute({
       page: val
@@ -87,11 +87,11 @@ export default class TableMixins extends GlobalMixins {
 
   toAddPage(obj: any, isBlank: boolean = false) {
     if (isBlank) {
-      let url = obj.id ? `${obj.path}?id=${obj.id}` : `${obj.path}`;
+      const url = obj.id ? `${obj.path}?id=${obj.id}` : `${obj.path}`;
       window.open(url, "_blank");
       return;
     }
-    let router: any = {
+    const router: any = {
       name: obj.routerName
     };
     obj.id &&
@@ -113,8 +113,8 @@ export default class TableMixins extends GlobalMixins {
     await this.getTableList();
   }
 
-  async getTableListCallback(data) {
-    // console.log("TableList Data", data);
+  async getTableListCallback(data: any[]) {
+    console.log("TableList Data", data);
   }
 
   async getTableList() {
@@ -137,15 +137,15 @@ export default class TableMixins extends GlobalMixins {
 
   async delItem() {
     if (this.multipleSelection.length === 0) {
-      this.$message.warning(this.$t("Delete Tip") as string);
+      this.$message.warning((this as any).$t("Delete Tip"));
       return;
     } else {
-      this.$confirm(
-        this.$t("Delete Confirm") as string,
-        this.$t("Prompt") as string,
+      (this as any).$confirm(
+        (this as any).$t("Delete Confirm") as string,
+        (this as any).$t("Prompt") as string,
         {
-          confirmButtonText: this.$t("Ok") as string,
-          cancelButtonText: this.$t("Cancel") as string,
+          confirmButtonText: (this as any).$t("Ok"),
+          cancelButtonText: (this as any).$t("Cancel"),
           type: "warning"
         }
       ).then(async () => {
@@ -154,7 +154,7 @@ export default class TableMixins extends GlobalMixins {
         const res = await (this as any).$service[this.delApi](ids);
         this.loading = false;
         if (res.$code === 0) {
-          this.$message.success(this.$t("Success") as string);
+          this.$message.success((this as any).$t("Success"));
           await this.getTableList();
         }
       });

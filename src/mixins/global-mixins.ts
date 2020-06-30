@@ -4,7 +4,7 @@ import { omitBy } from "lodash";
 @Component({})
 export default class TableMixins extends Vue {
   getLabel(type: string) {
-    return this.$t(type);
+    return (this as any).$t(type);
   }
 
   changeRoute(obj: any) {

@@ -1,0 +1,70 @@
+@import "./element-variables.scss";
+@import "./color.scss";
+
+* {
+	padding: 0;
+	margin: 0;
+  box-sizing: border-box;
+}
+
+#app {
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+/* element ui */
+.el-breadcrumb {
+  margin-bottom: 30px;
+  .is-link {
+    color: var(--colorPrimary);
+  }
+}
+
+.el-pagination {
+  padding: 0;
+  margin-top: 10px;
+}
+
+/* custome */
+.table-tools {
+  margin: 10px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #EBEEF5;
+  .basic-tools {
+    display: flex;
+    justify-content: space-between;
+    .search-group {
+      .search {
+        width: 210px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .advance-tools {
+    padding-top: 10px;
+    .el-form--inline {
+      .el-form-item {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.form {
+  .el-form {
+    width: 400px;
+    .el-input, .el-select {
+      width: 400px;
+    }
+  }
+}
