@@ -6,6 +6,7 @@ import GlobalMixins from "./global-mixins";
  * table列表的基础类
  * 子类必须实现的属性如下：
  * listApi - 列表请求api
+ *
  * 子类可选实现的属性如下：
  * delApi- 删除请求api
  * init() - 初始化方法，一般用来重写请求参数的值
@@ -13,8 +14,8 @@ import GlobalMixins from "./global-mixins";
  */
 @Component({})
 export default class TableMixins extends GlobalMixins {
-  loading: boolean = false;
-  isAdvanceTools: boolean = false;
+  loading = false;
+  isAdvanceTools = false;
   tableList: any = [];
   multipleSelection: any[] = [];
   pagination = {
@@ -26,10 +27,10 @@ export default class TableMixins extends GlobalMixins {
     prop: "",
     order: "descending"
   };
-  keyword: string = "";
+  keyword = "";
   filter: any = {};
-  listApi: string = "";
-  delApi: string = "";
+  listApi = "";
+  delApi = "";
 
   created() {
     this.pagination.page = Number(this.$route.query.page) || 1;
@@ -45,7 +46,9 @@ export default class TableMixins extends GlobalMixins {
   }
 
   // 初始化方法
-  init() {}
+  init() {
+    console.log("init");
+  }
 
   onSortChange(column: any) {
     this.defaultSort.prop = column.prop;
@@ -85,7 +88,7 @@ export default class TableMixins extends GlobalMixins {
     this.getTableList();
   }
 
-  toAddPage(obj: any, isBlank: boolean = false) {
+  toAddPage(obj: any, isBlank = false) {
     if (isBlank) {
       const url = obj.id ? `${obj.path}?id=${obj.id}` : `${obj.path}`;
       window.open(url, "_blank");
@@ -137,15 +140,15 @@ export default class TableMixins extends GlobalMixins {
 
   async delItem() {
     if (this.multipleSelection.length === 0) {
-      this.$message.warning((this as any).$t("Delete Tip"));
+      this.$message.warning(this.$t("Delete Tip") as string);
       return;
     } else {
-      (this as any).$confirm(
-        (this as any).$t("Delete Confirm") as string,
-        (this as any).$t("Prompt") as string,
+      this.$confirm(
+        this.$t("Delete Confirm") as string,
+        this.$t("Prompt") as string,
         {
-          confirmButtonText: (this as any).$t("Ok"),
-          cancelButtonText: (this as any).$t("Cancel"),
+          confirmButtonText: this.$t("Ok") as string,
+          cancelButtonText: this.$t("Cancel") as string,
           type: "warning"
         }
       ).then(async () => {
@@ -154,7 +157,7 @@ export default class TableMixins extends GlobalMixins {
         const res = await (this as any).$service[this.delApi](ids);
         this.loading = false;
         if (res.$code === 0) {
-          this.$message.success((this as any).$t("Success"));
+          this.$message.success(this.$t("Success") as string);
           await this.getTableList();
         }
       });
