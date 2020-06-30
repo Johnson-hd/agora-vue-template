@@ -9,8 +9,11 @@ export default class TableMixins extends Vue {
 
   changeRoute(obj: any) {
     this.$router.replace({
-      name: <string>this.$route.name,
-      query: omitBy(Object.assign({}, this.$route.query, obj), (v: string) => v === "")
+      name: this.$route.name as string,
+      query: omitBy(
+        Object.assign({}, this.$route.query, obj),
+        (v: string) => v === ""
+      )
     });
   }
 
