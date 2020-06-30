@@ -1,0 +1,30 @@
+{
+	"layout": {
+		"prefix": "layout",
+		"body": [
+			"<template>",
+      "\t<div class=\"your-component-name\">",
+      "\t\t<el-breadcrumb separator=\"/\">",
+      "\t\t\t<el-breadcrumb-item>your breadcrumb one</el-breadcrumb-item>",
+      "\t\t\t<el-breadcrumb-item>your breadcrumb two</el-breadcrumb-item>",
+      "\t\t</el-breadcrumb>",
+      "\t\t<el-card></el-card>",
+      "\t</div>",
+			"</template>",
+			"",
+			"<script lang=\"ts\">",
+      "import { Vue, Component } from \"vue-property-decorator\";",
+      "",
+			"@Component({})",
+			"export default class YourComponenetName extends Vue {}",
+			"</script>",
+			"",
+      "<style lang=\"scss\" scoped>",
+      ".your-component-name {",
+      "}",
+      "</style>",
+      ""
+		],
+		"description": "layout 代码片段"
+	}
+}
